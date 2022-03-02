@@ -102,8 +102,11 @@ function Main() {
     //Printing Array
     AddressBook.forEach(contact=>console.log(contact.toString()));
     // UC4 Edit Contact by name.
-    AddressBook.filter(contact => contact.firstName == "Chetan" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
+    AddressBook.filter(contact => contact.firstName == "akshata" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
     AddressBook.forEach(contact=>console.log(contact.toString()));
+     // UC5 Deletes the contact from AddressBook Array.
+     DeleteContact("Chetan", "7896543254");
+     AddressBook.forEach(contact=>console.log(contact.toString()));
 }
 Main();
 
