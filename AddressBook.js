@@ -75,3 +75,16 @@ class Contact {
             + " State: " + this.state + " Zipcode: " + this.zip + " Phone Number: " + this.phoneNumber + " Email: " + this.email;
     }
 }
+function AddContact(firstName, lastName, address, city, state, zip, phoneNumber, email) {
+    let newcontact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+    AddressBook.push(newcontact);
+}
+function Main() {
+    console.log("Welcome to address book");
+    AddContact("Akshata", "sawant", "Dhanori", "Pune", "Maharashtra", "400084", "7896543254", "akshata@gmail.com");
+    AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452", "gauravi@gmail.com");
+    AddContact("Rohit", "Mehta", "Vasant kunj", "Delhi", "Delhi", "110023", "7452654852", "rohit@gmail.com");    
+}
+let AddressBook = new Array();
+Main();
+AddressBook.forEach(contact => console.log(contact.toString()));
