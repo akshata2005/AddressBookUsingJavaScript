@@ -93,21 +93,38 @@ function AddContact(firstName, lastName, address, city, state, zip, phoneNumber,
         console.error(e);
     }
 }
+// UC5 Delete Contact
+function DeleteContact(firstName, mobileNumber)
+{
+    for(let index = 0; index < AddressBook.length; index++)
+    {
+        if(AddressBook[index].firstName == firstName && AddressBook[index].phoneNumber == mobileNumber)
+        {
+            AddressBook.splice(index, 1 );
+        }
+    }
+}
+// UC6 Gets Count of Contact in Address Book.
+function CountContact(){
+    let addressBookCount = AddressBook.reduce((count) => count= count + 1, 0);
+    console.log("Contact Count is: " + addressBookCount);
+}
 function Main() {
     console.log("Welcome to address book");
-    //Adds new contact.
-    AddContact("Akshata", "Sawant", "Dhanori", "Pune", "Maharashtra", "400084", "7896543254","akshata@gmail.com");
+    // UC3 Adds new contact in AddressBook Array.
+    AddContact("Akshata", "sawant", "Ghatkopar", "Mumbai", "Maharashtra", "400084", "7896543254","akshata@gmail.com");
     AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452","gauravi@gmail.com");
     AddContact("Rohit", "Mehta", "Vasantkunj", "Delhi", "Delhi", "110023", "7452654852","rohit@gmail.com");
     //Printing Array
     AddressBook.forEach(contact=>console.log(contact.toString()));
     // UC4 Edit Contact by name.
-    AddressBook.filter(contact => contact.firstName == "akshata" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
+    AddressBook.filter(contact => contact.firstName == "Chetan" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
     AddressBook.forEach(contact=>console.log(contact.toString()));
-     // UC5 Deletes the contact from AddressBook Array.
-     DeleteContact("Chetan", "7896543254");
-     AddressBook.forEach(contact=>console.log(contact.toString()));
+    // UC5 Deletes the contact from AddressBook Array.
+    DeleteContact("akshata", "7896543254");
+    AddressBook.forEach(contact=>console.log(contact.toString()));
 }
 Main();
+CountContact();
 
 
