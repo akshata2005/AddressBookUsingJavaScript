@@ -130,6 +130,16 @@ function ViewContactByState(){
     AddressBook.filter((contact) => contactsStateMap.set(contact.state, SearchByState(contact.state)));
     return contactsStateMap;
 }
+// UC10 Get Contact Count by city.
+function ContactCountByCity(){
+    AddressBook.filter((contact) => countCityMap.set(contact.city, SearchByCity(contact.city).length));
+    return countCityMap;
+}
+// UC10 Get Contact Count by state.
+function ContactCountByState(){
+    AddressBook.filter((contact) => countStateMap.set(contact.state, SearchByState(contact.state).length));
+    return countStateMap;
+}
 function Main() {
     console.log("Welcome to address book");
     // UC3 Adds new contact in AddressBook Array.
@@ -153,12 +163,21 @@ function Main() {
     console.log(ViewContactByCity());
     console.log("---- UC9 ViewsContacts By State----");
     console.log(ViewContactByState());
+    console.log("----UC10 Contact count by City----");
+    console.log(ContactCountByCity());
+    console.log("----UC10 Contact count by State----");
+    console.log(ContactCountByState());
+
 }
 // Created Address Book Array to store contacts.
 let AddressBook = new Array();
-// Map to Contacts in a city.
+// Map to get Contacts by city.
 let contactsCityMap = new Map();
-// Map to Contacts in a state.
+// Map to get Contacts by state.
  let contactsStateMap = new Map();
+ // Map to get contacts count by city.
+ let countCityMap = new Map();
+ // Map to get contacts count by state.
+ let countStateMap = new Map();
 Main();
 CountContact();
