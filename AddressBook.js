@@ -81,8 +81,6 @@ class Contact {
             + " \nState: " + this.state + " \nZipcode: " + this.zip + " \nPhone Number: " + this.phoneNumber + " \nEmail: " + this.email;
     }
 }
-// Created Address Book Array to store contacts.
-let AddressBook = new Array();
 //UC3 Add new contact.
 function AddContact(firstName, lastName, address, city, state, zip, phoneNumber, email) {
     try {
@@ -121,12 +119,24 @@ function SearchByState(state) {
     let sortByState = AddressBook.filter(contact => contact.state == state);
     return sortByState;
 }
+// UC9 Displays Contact By City.
+function ViewContactByCity()
+{
+    AddressBook.filter((contact) => contactsCityMap.set(contact.city, SearchByCity(contact.city)));
+    return contactsCityMap;
+}
+// UC9 Displays Contact By State.
+function ViewContactByState(){
+    AddressBook.filter((contact) => contactsStateMap.set(contact.state, SearchByState(contact.state)));
+    return contactsStateMap;
+}
 function Main() {
     console.log("Welcome to address book");
     // UC3 Adds new contact in AddressBook Array.
-    AddContact("Akshata", "Sawant", "Viman nagar", "Pune", "Maharashtra", "400084", "7896543254", "akshata@gmail.com");
+    AddContact("Akshata", "Sawant", "viman nagar", "Pune", "Maharashtra", "400084", "7896543254", "akshata@gmail.com");
     AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452", "gauravi@gmail.com");
     AddContact("Rohit", "Mehta", "Vasantkunj", "Delhi", "Delhi", "110023", "7452654852", "rohit@gmail.com");
+    AddContact("Shubham", "Patil", "JPnagar", "Bangalore", "Karnataka", "500094", "8542102563", "shubham@gmail.com")
     //Printing Array
     AddressBook.forEach(contact => console.log(contact.toString()));
     // UC4 Edit Contact by name.
@@ -138,8 +148,17 @@ function Main() {
     // UC8 Prints Contact by city.
     console.log(SearchByCity("Mumbai"));
     // UC8 Prints Contact by state.
-    console.log(SearchByState("Delhi"));
-    
+    console.log(SearchByState("Karnataka"));
+    console.log("---- UC9 ViewsContacts By City----");
+    console.log(ViewContactByCity());
+    console.log("---- UC9 ViewsContacts By State----");
+    console.log(ViewContactByState());
 }
+// Created Address Book Array to store contacts.
+let AddressBook = new Array();
+// Map to Contacts in a city.
+let contactsCityMap = new Map();
+// Map to Contacts in a state.
+ let contactsStateMap = new Map();
 Main();
 CountContact();
