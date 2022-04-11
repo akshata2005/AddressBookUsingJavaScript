@@ -145,6 +145,28 @@ function SortContactsByName(){
     AddressBook.sort((person1, person2) => (person1.firstName).localeCompare(person2.firstName));
     console.log(AddressBook);
 }
+// UC12 Sort Contact by City, State and Zipcode.
+function SortContact(property)
+{
+    //console.log("Sort Contacts By:- ")
+    //console.log("\n1. City. \n2. State \n3. Zipcode.")
+    switch(property){
+        case "city":
+            AddressBook.sort((person1, person2) => (person1.city).localeCompare(person2.city));
+            console.log(AddressBook);
+        break;
+        case "state":
+            AddressBook.sort((person1, person2) => (person1.state).localeCompare(person2.state));
+            console.log(AddressBook);
+        break;
+        case "zip":
+            AddressBook.sort((person1, person2) => (person1.zip).localeCompare(person2.zip));
+            console.log(AddressBook);
+        break;
+        default:
+            console.log("Enter Valid Property.");
+    }
+}
 function Main() {
     console.log("Welcome to address book");
     // UC3 Adds new contact in AddressBook Array.
@@ -187,3 +209,7 @@ let contactsCityMap = new Map();
 Main();
 CountContact();
 SortContactsByName();
+console.log("Contacts Sorted by City");
+SortContact("city");
+console.log("Contacts Sorted by State");
+SortContact("state");
