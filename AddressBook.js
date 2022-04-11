@@ -1,4 +1,4 @@
-   class Contact {
+class Contact {
     /// Constructor
     constructor(...params) {
         this.firstName = params[0];
@@ -100,7 +100,7 @@ function DeleteContact(firstName, mobileNumber)
     {
         if(AddressBook[index].firstName == firstName && AddressBook[index].phoneNumber == mobileNumber)
         {
-            AddressBook.splice(index, 1 );
+            AddressBook.splice(index, 2 );
         }
     }
 }
@@ -112,19 +112,20 @@ function CountContact(){
 function Main() {
     console.log("Welcome to address book");
     // UC3 Adds new contact in AddressBook Array.
-    AddContact("Akshata", "sawant", "Ghatkopar", "Mumbai", "Maharashtra", "400084", "7896543254","akshata@gmail.com");
+    AddContact("Akshata", "Sawant", "Viman nagar", "Pune", "Maharashtra", "411015", "7896543254","akshata@gmail.com");
     AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452","gauravi@gmail.com");
     AddContact("Rohit", "Mehta", "Vasantkunj", "Delhi", "Delhi", "110023", "7452654852","rohit@gmail.com");
     //Printing Array
     AddressBook.forEach(contact=>console.log(contact.toString()));
     // UC4 Edit Contact by name.
-    AddressBook.filter(contact => contact.firstName == "Chetan" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
+    AddressBook.filter(contact => contact.firstName == "Akshata" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
     AddressBook.forEach(contact=>console.log(contact.toString()));
     // UC5 Deletes the contact from AddressBook Array.
-    DeleteContact("akshata", "7896543254");
+    DeleteContact("Akshata", "7896543254");
     AddressBook.forEach(contact=>console.log(contact.toString()));
 }
 Main();
 CountContact();
+
 
 
