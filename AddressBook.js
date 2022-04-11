@@ -68,12 +68,12 @@ class Contact {
         else { throw "Invalid Phone Number"; }
     }
     get email() { return this._email; }
-    set email(email){
+    set email(email) {
         let emailRegex = RegExp("^([a-z]){1,}[a-z0-9]*([.+_-]){0,1}[0-9a-z]+(@){1}([0-9a-z]+)(\\.([a-z]){2,}){1}(\\.[a-z]{2,})?$");
-        if(emailRegex.test(email)){
+        if (emailRegex.test(email)) {
             this._email = email;
         }
-        else{ throw "Invalid Email" }
+        else { throw "Invalid Email" }
     }
     //To string method for displaying contacts
     toString() {
@@ -87,45 +87,45 @@ let AddressBook = new Array();
 function AddContact(firstName, lastName, address, city, state, zip, phoneNumber, email) {
     try {
         let newcontact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-        AddressBook.push(newcontact);
+        // UC7 Checks for Duplicate contacts.
+        if (AddressBook.find(person => person.firstName == newcontact.firstName && person.email == newcontact.email)) {
+            throw "Contact Already Exists.";
+        } else {
+            AddressBook.push(newcontact);
+            console.log("Contact Added Successfully.");
+        }
     }
     catch (e) {
         console.error(e);
     }
 }
 // UC5 Delete Contact
-function DeleteContact(firstName, mobileNumber)
-{
-    for(let index = 0; index < AddressBook.length; index++)
-    {
-        if(AddressBook[index].firstName == firstName && AddressBook[index].phoneNumber == mobileNumber)
-        {
-            AddressBook.splice(index, 2 );
+function DeleteContact(firstName, mobileNumber) {
+    for (let index = 0; index < AddressBook.length; index++) {
+        if (AddressBook[index].firstName == firstName && AddressBook[index].phoneNumber == mobileNumber) {
+            AddressBook.splice(index, 1);
         }
     }
 }
 // UC6 Gets Count of Contact in Address Book.
-function CountContact(){
-    let addressBookCount = AddressBook.reduce((count) => count= count + 1, 0);
+function CountContact() {
+    let addressBookCount = AddressBook.reduce((count) => count = count + 1, 0);
     console.log("Contact Count is: " + addressBookCount);
 }
 function Main() {
     console.log("Welcome to address book");
     // UC3 Adds new contact in AddressBook Array.
-    AddContact("Akshata", "Sawant", "Viman nagar", "Pune", "Maharashtra", "411015", "7896543254","akshata@gmail.com");
-    AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452","gauravi@gmail.com");
-    AddContact("Rohit", "Mehta", "Vasantkunj", "Delhi", "Delhi", "110023", "7452654852","rohit@gmail.com");
+    AddContact("Akshata", "Sawant", "viman nagar", "Pune", "Maharashtra", "400084", "7896543254", "akshata@gmail.com");
+    AddContact("Gauravi", "Sharma", "Malad", "Mumbai", "Maharashtra", "400028", "9856201452", "gauravi@gmail.com");
+    AddContact("Rohit", "Mehta", "Vasantkunj", "Delhi", "Delhi", "110023", "7452654852", "rohit@gmail.com");
     //Printing Array
-    AddressBook.forEach(contact=>console.log(contact.toString()));
+    AddressBook.forEach(contact => console.log(contact.toString()));
     // UC4 Edit Contact by name.
-    AddressBook.filter(contact => contact.firstName == "Akshata" && contact.phoneNumber == "7896543254").forEach(contact =>{ contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka"})
-    AddressBook.forEach(contact=>console.log(contact.toString()));
+    AddressBook.filter(contact => contact.firstName == "Akshata" && contact.phoneNumber == "7896543254").forEach(contact => { contact.address = "Kisan"; contact.city = "Banagalore"; contact.state = "Karnataka" })
+    AddressBook.forEach(contact => console.log(contact.toString()));
     // UC5 Deletes the contact from AddressBook Array.
     DeleteContact("Akshata", "7896543254");
-    AddressBook.forEach(contact=>console.log(contact.toString()));
+    AddressBook.forEach(contact => console.log(contact.toString()));
 }
 Main();
 CountContact();
-
-
-
